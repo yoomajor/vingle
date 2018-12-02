@@ -27,28 +27,42 @@ class Card extends Component {
         </div>
 
         <div className="added thumb">
-          <img src="https://vignette.wikia.nocookie.net/civilization/images/c/ce/Washington_no_jogo.jpg/revision/latest?cb=20130601151025&amp;path-prefix=pt-br" alt="" />
-          <img src="https://media1.tenor.com/images/15149c18be680e99488a339f558f0a6c/tenor.gif?itemid=4440552" alt="" />
+          <div className="box clear">
+            <div className="inner"><img src="https://cdn.2kgames.com/civilization.com/Switch_002.jpg" alt="" /></div>
+            <div className="inner"><img src="https://cdn.2kgames.com/civilization.com/RF-Cree/RF-Cree-leader.jpg" alt="" /></div>
+          </div>
         </div>
 
         <div className="added thumb">
-          <video controls autoplay="" loop preload="auto" src="https://media.vingle.net/videos/ufj58dkd1j/74b9a617-2ba9-42a4-8994-2ba72a6d85c9.mp4">
-            <source src="https://media.vingle.net/videos/ufj58dkd1j/74b9a617-2ba9-42a4-8994-2ba72a6d85c9.mp4" type="video/mp4" />
-          </video>
+          <div className="box clear">
+            <div className="inner">
+              <video controls autoPlay="" loop preload="auto" src="https://media.vingle.net/videos/ufj58dkd1j/74b9a617-2ba9-42a4-8994-2ba72a6d85c9.mp4">
+                <source src="https://media.vingle.net/videos/ufj58dkd1j/74b9a617-2ba9-42a4-8994-2ba72a6d85c9.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <div className="inner">
+              <video controls autoPlay="" loop preload="auto" src="https://media.vingle.net/videos/ufj58dkd1j/74b9a617-2ba9-42a4-8994-2ba72a6d85c9.mp4">
+                <source src="https://media.vingle.net/videos/ufj58dkd1j/74b9a617-2ba9-42a4-8994-2ba72a6d85c9.mp4" type="video/mp4" />
+              </video>
+            </div>
+          </div>
         </div>
 
         <div className="added share embed">
-          <iframe width="560" height="315" src="https://www.youtube.com/embed/nY67SbSPTQI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <div className="inner">
+            <div className="source"><iframe width="560" height="315" src="https://www.youtube.com/embed/mP--G6TmH8Q" frameBorder="0" title="" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe></div>
+            <div className="url"><a href="#" target="_blank">www.youtube.com <i className="fas fa-angle-right"></i></a></div>
+          </div>
         </div>
 
         <div className="added share page">
-          제목
-          설명
-        </div>
-
-        <div className="added share signedCard">
-          제목
-          설명
+          <div className="inner">
+            <div className="source">
+              <p className="title">제목</p>
+              <p className="desc">설명</p>
+            </div>
+            <div className="url"><a href="#" target="_blank">www.link.com <i className="fas fa-angle-right"></i></a></div>
+          </div>
         </div>
 
         <div className="tag">
