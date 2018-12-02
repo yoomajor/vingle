@@ -1,14 +1,122 @@
+$url:'./img/';
+$gray:#a0a0a0;
+$black:#343434;
+@mixin ib() {
+    display:inline-block;
+    vertical-align:middle;
+}
+@mixin cell() {
+    display:table-cell;
+    vertical-align:middle;
+}
+
 .card {
     max-width:560px;
-    margin:0 auto;
-    .user {
+    margin:0 auto 20px;
+    padding:35px;
+    border-radius:6px;
+    border:1px solid #dce2e6;
+    background-color:#fff;
+    font-weight: bold;
+}
+.user {
+    font-size:0;
+    .img {
+        @include ib();
+        width:42px;
+        height:42px;
+        overflow:hidden;
         border-radius:100%;
         border:1px solid #dfe3e6;
-        background:url('./img/img_user.jpg') no-repeat;
-        background-size: cover;
+        background:url($url + 'img_user.jpg') no-repeat;
+        background-size:cover;
         img {
             width:40px;
             height:40px;
         }
     }
+    .info {
+        @include ib();
+        width:calc(100% - 112px);
+        margin:0 15px;
+        .name {
+            font-size:16px;
+            font-weight:bold;
+        }
+        .time {
+            font-size:12px;
+            color:$gray;
+        }
+    }
+    .more {
+        @include ib();
+        overflow:hidden;
+        button {
+            width:40px;
+            height:40px;
+            text-align:right;
+            .fas {
+                font-size:24px;
+            }
+        }
+    }
+}
+
+.title {
+    margin-top:20px;
+    font-size:16px;
+    font-weight:bold;
+}
+.contents {
+    overflow:hidden;
+    max-height:7.5em;
+    margin-top:10px;
+    line-height:1.5;
+    white-space:pre-line;
+    .more {
+        color:$gray;
+        &:before {
+            content:"...";
+            color:$black;
+        }
+    }
+}
+.added {
+    margin-top:10px;
+}
+.tag {
+    margin-top:15px;
+    color:$gray;
+    a {
+        margin-right:10px;
+        &:hover {
+            text-decoration:underline;
+        }
+    }
+}
+.util {
+    margin-top:15px;
+    padding-top:20px;
+    border-top:1px solid #ccc;
+    .liked {
+        @include ib();
+        margin-right:20px;
+        .fa-heart {
+            color:#f52e4a;
+            &:hover {
+                transform:rotate(15deg);
+            }
+        }
+    }
+    .reply {
+        @include ib();
+    }
+    .share {
+        float:right;
+    }
+    [class*="fa-"] {
+        margin-right:5px;
+        font-size:1.3em;
+    }
+
 }
