@@ -10,12 +10,8 @@ $shadow:0 2px 8px rgba(0,0,0,0.3);
 .dropdownGroup {
     display:inline-block;
     position:relative;
-    &.open .dropdown {
-        display:block;
-    }
 }
 .dropdown {
-    display:none;
     position:absolute;
     top:100%;
     left:50%;
@@ -408,4 +404,28 @@ $shadow:0 2px 8px rgba(0,0,0,0.3);
         font-size:1em;
     }
 
+}
+
+@media screen and (max-width:767px) {
+    .dropdown {
+        left:auto;
+        right:0;
+        margin-right:-15px;
+    }
+    .card {
+        margin-bottom:15px;
+        padding:15px;
+    }
+    .user {
+        .info {
+            padding:0 10px;
+        }
+    }
+    .title {
+        margin-top:15px;
+    }
+    .util {
+        padding-top:15px;
+    }
+    
 }
