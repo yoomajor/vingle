@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './Card.scss';
+import Ui from '../Ui/Ui';
 
 class Card extends Component {
-
   render() {
     return (
       <div className="card">
@@ -13,7 +13,17 @@ class Card extends Component {
             <div className="name"><a href="#">user name</a></div>
             <div className="time">1분 전</div>
           </div>
-          <div className="more"><button type="button"><i className="fas fa-ellipsis-h"></i><span className="ellipsis">...</span><span className="blind">더보기</span></button></div>
+          <div className="more">
+            <div className="dropdownGroup">
+              <button type="button"><i className="fas fa-ellipsis-h"></i><span className="blind">더보기</span></button>
+              <div className="dropdown">
+                <div className="item"><button type="button">이 유저 뮤트하기</button></div>
+                <div className="item"><button type="button">신고하기</button></div>
+                <div className="item"><button type="button">수정하기</button></div>
+                <div className="item"><button type="button">삭제하기</button></div>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div className="title">카드 제목</div>
@@ -26,43 +36,38 @@ class Card extends Component {
           여섯줄이 되면 이건 안보여야 함
         </div>
 
-        <div className="added thumb">
+        <div className="added thumb thumbratio_w thumbtype_5">
           <div className="box clear">
-            <div className="inner"><img src="https://cdn.2kgames.com/civilization.com/Switch_002.jpg" alt="" /></div>
-            <div className="inner"><img src="https://cdn.2kgames.com/civilization.com/RF-Cree/RF-Cree-leader.jpg" alt="" /></div>
-          </div>
-        </div>
-
-        <div className="added thumb">
-          <div className="box clear">
-            <div className="inner">
-              <video controls autoPlay="" loop preload="auto" src="https://media.vingle.net/videos/ufj58dkd1j/74b9a617-2ba9-42a4-8994-2ba72a6d85c9.mp4">
-                <source src="https://media.vingle.net/videos/ufj58dkd1j/74b9a617-2ba9-42a4-8994-2ba72a6d85c9.mp4" type="video/mp4" />
-              </video>
+            <div className="wrap">
+              <div className="inner"><img src="https://cdn.2kgames.com/civilization.com/RF-Cree/RF-Cree-leader.jpg" alt="" /></div>
             </div>
-            <div className="inner">
-              <video controls autoPlay="" loop preload="auto" src="https://media.vingle.net/videos/ufj58dkd1j/74b9a617-2ba9-42a4-8994-2ba72a6d85c9.mp4">
-                <source src="https://media.vingle.net/videos/ufj58dkd1j/74b9a617-2ba9-42a4-8994-2ba72a6d85c9.mp4" type="video/mp4" />
-              </video>
+            <div className="wrap">
+              <div className="inner format_video"><img src="https://cdn.2kgames.com/civilization.com/RF-Cree/RF-Cree-leader.jpg" alt="" /></div>
+              <div className="inner format_gif"><img src="https://cdn.2kgames.com/civilization.com/RF-Cree/RF-Cree-leader.jpg" alt="" /></div>
+              <div className="inner"><img src="https://cdn.2kgames.com/civilization.com/RF-Cree/RF-Cree-leader.jpg" alt="" /></div>
+              <div className="inner"><img src="https://cdn.2kgames.com/civilization.com/RF-Cree/RF-Cree-leader.jpg" alt="" /></div>
+              <span className="more">+1</span>
             </div>
           </div>
         </div>
 
         <div className="added share embed">
           <div className="inner">
-            <div className="source"><iframe width="560" height="315" src="https://www.youtube.com/embed/mP--G6TmH8Q" frameBorder="0" title="" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe></div>
+            <div className="source"><iframe src="https://www.youtube.com/embed/mP--G6TmH8Q" frameBorder="0" title="" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe></div>
             <div className="url"><a href="#" target="_blank">www.youtube.com <i className="fas fa-angle-right"></i></a></div>
           </div>
         </div>
 
         <div className="added share page">
-          <div className="inner">
-            <div className="source">
-              <p className="title">제목</p>
-              <p className="desc">설명</p>
+          <a href="#" target="_blank">
+            <div className="inner">
+              <div className="source">
+                <p className="title">제목</p>
+                <p className="desc">설명</p>
+              </div>
+              <div className="url">www.link.com <i className="fas fa-angle-right"></i></div>
             </div>
-            <div className="url"><a href="#" target="_blank">www.link.com <i className="fas fa-angle-right"></i></a></div>
-          </div>
+          </a>
         </div>
 
         <div className="tag">
@@ -76,7 +81,19 @@ class Card extends Component {
         <div className="util">
           <div className="liked"><button type="button"><i className="far fa-heart"></i><i className="fas fa-heart"></i><span className="label">좋아요</span></button></div>
           <div className="reply"><button type="button"><i className="far fa-comments"></i>댓글</button></div>
-          <div className="share"><button type="button"><i className="fas fa-external-link-alt"></i><span className="label">보내기</span></button></div>
+          <div className="share">
+            <div className="dropdownGroup">
+              <button type="button"><i className="fas fa-share-alt"></i><span className="label">보내기</span></button>
+              <div className="dropdown">
+                <div className="item">
+                  <button type="button"><i className="fas fa-paperclip"></i> 기본 컬렉션에 저장하기</button>
+                  <button type="button" title="다른 컬렉션 선택" className="more"><i className="fas fa-plus-square"></i><span className="blind">다른 컬렉션 선택</span></button>
+                </div>
+                <div className="item"><button type="button"><i className="fas fa-pencil-alt"></i>카드에 작성하기</button></div>
+                <div className="item"><button type="button"><i className="fas fa-external-link-alt"></i>외부에 공유하기</button></div>
+              </div>
+          </div>
+          </div>
         </div>
 
       </div>

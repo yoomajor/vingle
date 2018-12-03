@@ -37,13 +37,25 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
-<!--     
+<!--    
     <div class="card">
-      <div class="user">
-        <div class="img"><a href="#"><img src="" alt=""></a></div>
-        <div class="name"><a href="#">user name</a></div>
-        <div class="time">1분 전</div>
-        <div class="more"><button type="button"><span class="blind">더보기</span></button></div>
+      <div class="user clear">
+        <div class="img"><a href="#"><img src="https://media.vingle.net/images/us_l/w5w8vzbw6j.jpg" alt="" /></a></div>
+        <div class="info">
+          <div class="name"><a href="#">user name</a></div>
+          <div class="time">1분 전</div>
+        </div>
+        <div class="more">
+          <div class="dropdownGroup open">
+            <button type="button"><i class="fas fa-ellipsis-h"></i><span class="blind">더보기</span></button>
+            <div class="dropdown">
+              <div class="item"><button type="button">이 유저 뮤트하기</button></div>
+              <div class="item"><button type="button">신고하기</button></div>
+              <div class="item"><button type="button">수정하기</button></div>
+              <div class="item"><button type="button">삭제하기</button></div>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="title">카드 제목</div>
       <div class="contents">
@@ -62,13 +74,42 @@
         </span>
         <span class="more">+1개 관심사</span>
       </div>
-      <div class="util">
-        <div class="liked"><button type="button"><span class="label">좋아요</span></button></div>
-        <div class="reply"><button type="button">댓글</button></div>
-        <div class="share"><button type="button">보내기</button></div>
+      <div class="util open">
+        <div class="liked"><button type="button"><i class="far fa-heart"></i><i class="fas fa-heart"></i><span class="label">좋아요</span></button></div>
+        <div class="reply"><button type="button"><i class="far fa-comments"></i>댓글</button></div>
+        <div class="share">
+          <div class="dropdownGroup">
+            <button type="button"><i class="fas fa-share-alt"></i><span class="label">보내기</span></button>
+            <div class="dropdown">
+              <div class="item">
+                <button type="button"><i class="fas fa-paperclip"></i> 기본 컬렉션에 저장하기</button>
+                <button type="button" title="다른 컬렉션 선택" class="more"><i class="fas fa-plus-square"></i><span class="blind">다른 컬렉션 선택</span></button>
+              </div>
+              <div class="item"><button type="button"><i class="fas fa-pencil-alt"></i>카드에 작성하기</button></div>
+              <div class="item"><button type="button"><i class="fas fa-external-link-alt"></i>외부에 공유하기</button></div>
+            </div>
+        </div>
+        </div>
       </div>
     </div>
--->
-
+ -->
+ <!--
+ <div id="toast">토스트메시지</div>
+ -->
+<!--  
+ <div id="popup">
+    <div class="box">
+      <div class="frame">
+        <button type="button" class="btnClose"><i class="fas fa-times"></i><span class="blind">닫기</span></button>
+        <div class="title">팝업 제목</div>
+        <div class="entry">들어갈 내용 (컬렉션리스트, 차단 컨펌, 신고사유 체크 등..)</div>
+        <div class="btns">
+          <button type="button" class="btn">취소</button>
+          <button type="button" class="btn red">확인</button>
+        </div>
+      </div>
+    </div>
+ </div>
+  -->
   </body>
 </html>
