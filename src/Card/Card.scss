@@ -69,6 +69,19 @@ $shadow:0 2px 8px rgba(0,0,0,0.3);
             color:$gray;
         }
     }
+    .follow button {
+        width:100px;
+        padding:8px 0;
+        color:#fff;
+        border:1px solid $blue;
+        border-radius:50px;
+        background-color:$blue;
+        &.active {
+            color:inherit;
+            border-color:$black;
+            background-color:#fff;
+        }
+    }
     .more {
         width:40px;
         position:relative;
@@ -110,7 +123,7 @@ $shadow:0 2px 8px rgba(0,0,0,0.3);
 }
 
 .added {
-    margin-top:10px;
+    margin-top:15px;
     cursor:pointer;
     &.thumb {
         position:relative;
@@ -304,21 +317,37 @@ $shadow:0 2px 8px rgba(0,0,0,0.3);
         width:100%;
         height:100%;
     }
-    &.embed {
-        .source {
-            position:relative;
-            padding-bottom:56.25%;
-            iframe {
-                position:absolute;
-                top:0;
-                left:0;
-                width:100%;
-                height:100%;
+    
+    &.share {
+        .url {
+            padding:15px;
+            color:$gray;
+            font-size:12px;
+            border-radius:0 0 6px 6px;
+            border:1px solid $light-gray;
+            border-top:none;
+        }
+        .more {
+            width:100%;
+            margin-top:10px;
+            padding:10px 0;
+            text-align:center;
+            border:1px solid $light-gray;
+            border-radius:6px;
+        }
+        &.embed {
+            .source {
+                position:relative;
+                padding-bottom:56.25%;
+                iframe {
+                    position:absolute;
+                    top:0;
+                    left:0;
+                    width:100%;
+                    height:100%;
+                }
             }
         }
-        
-    }
-    &.share {
         &.page {
             .desc {
                 margin-top:10px;
@@ -331,16 +360,7 @@ $shadow:0 2px 8px rgba(0,0,0,0.3);
                 border-bottom:none;
             }
         }
-        .url {
-            padding:15px;
-            color:$gray;
-            font-size:12px;
-            border-radius:0 0 6px 6px;
-            border:1px solid $light-gray;
-            border-top:none;
-        }
     }
-    
 }
 
 .tag {

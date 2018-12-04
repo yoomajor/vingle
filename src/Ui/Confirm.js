@@ -1,21 +1,22 @@
 import React, { Component } from 'react';
 
-class Popup extends Component {
+class Confirm extends Component {
   state = {
-    popup: false,
+    confirm: false,
   }
   static defaultProps = {
-    title: '팝업 제목1',
-    html: '팝업 내용1',
+    title: '컨펌 제목',
+    html: '컨펌 내용',
     close: () => {},
   }
+  
   render() {
     const {
       close
     } = this.props
     
     return (
-      <div id="popup">
+      <div id="confirm">
         <div className="box">
           <div className="frame">
             <button type="button" className="btnClose" onClick={() => close()}><i className="fas fa-times"></i><span className="blind">닫기</span></button>
@@ -32,4 +33,4 @@ class Popup extends Component {
   }
 }
 
-export default Popup;
+export default Confirm;

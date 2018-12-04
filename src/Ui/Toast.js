@@ -1,8 +1,15 @@
 import React, { Component } from 'react';
 
 class Toast extends Component {
+  state = {
+    toast: false,
+  }
   static defaultProps = {
-    msg: '토스트 메시지'
+    msg: '메시지'
+  }
+  toastMsg = ()=>{
+    this.setState({toast: true});
+    setTimeout(()=> this.setState({toast: false}), 1000)
   }
   render() {
     return (
