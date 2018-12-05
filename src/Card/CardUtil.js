@@ -31,7 +31,7 @@ class CardUser extends Component {
               {/* 글로벌 기능 :: 드롭다운 */}
               {this.state.dropdown ? 
                 <React.Fragment>
-                  <Dropdown />
+                  <Dropdown type="utilShare" />
                   <Dimm close={this.closeDropdown} />
                 </React.Fragment>
               : ''}

@@ -7,6 +7,7 @@ class CardUser extends Component {
     isFollow: false,
     dropdown: false,
   }
+  
   followUser = () =>{
     this.setState({isFollow: !this.state.isFollow});
   }
@@ -34,11 +35,11 @@ class CardUser extends Component {
           <div className="follow"><button type="button" className={this.state.isFollow ? 'active' : ''} onClick={this.followUser}>{this.state.isFollow ? '팔로잉' : '+ 팔로우'}</button></div>
           <div className="more">
             <div className="dropdownGroup">
-              <button type="button" name="userinfo" onClick={this.openDropdown}><i className="fas fa-ellipsis-h"></i><span className="blind">더보기</span></button>
+              <button type="button" onClick={this.openDropdown}><i className="fas fa-ellipsis-h"></i><span className="blind">더보기</span></button>
               {/* 글로벌 기능 :: 드롭다운 */}
               {this.state.dropdown ? 
                 <React.Fragment>
-                  <Dropdown />
+                  <Dropdown type='userInfo' />
                   <Dimm close={this.closeDropdown} />
                 </React.Fragment>
               : ''}
@@ -49,5 +50,7 @@ class CardUser extends Component {
     );
   }
 }
-
+Dropdown.defaultProps = {
+    type: 'userinfo'
+}
 export default CardUser;

@@ -23,7 +23,7 @@ class Card extends Component {
     confirm: false,
     dropdown: false,
   }
-    toastMsg = ()=>{
+  toastMsg = ()=>{
     this.setState({toast: true});
     setTimeout(()=> this.setState({toast: false}), 1000);
   }
@@ -83,7 +83,8 @@ class Card extends Component {
         
         {this.state.popup ? 
           <Popup
-            title="신고사유"
+            title="이 콘텐츠를 신고하는 이유는 무엇인가요?"
+            type="report"
             close={this.closePopup}
           /> 
         : ''}
