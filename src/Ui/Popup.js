@@ -22,7 +22,7 @@ class Popup extends Component {
             <div className="title">{this.props.title}</div>
             <div className="entry">{this.props.html}</div>
             <div className="btns">
-              <button type="button" className="btn">취소</button>
+              <button type="button" className="btn" onClick={() => close()}>취소</button>
               <button type="button" className="btn red">확인</button>
             </div>
           </div>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Dropdown from '../Ui/Dropdown';
+import Dimm from '../Ui/Dimm';
 
 class CardUser extends Component {
   state = {
@@ -10,8 +11,14 @@ class CardUser extends Component {
     this.setState({isFollow: !this.state.isFollow});
   }
   openDropdown = (e) =>{
-    this.setState({dropdown: true});
-    console.log(e.currentTarget)
+    this.setState({
+      dropdown: true,
+    });
+  }
+  closeDropdown = () =>{
+    this.setState({
+      dropdown: false
+    });
   }
 
   render() {
@@ -30,7 +37,10 @@ class CardUser extends Component {
               <button type="button" name="userinfo" onClick={this.openDropdown}><i className="fas fa-ellipsis-h"></i><span className="blind">더보기</span></button>
               {/* 글로벌 기능 :: 드롭다운 */}
               {this.state.dropdown ? 
-                <Dropdown />
+                <React.Fragment>
+                  <Dropdown />
+                  <Dimm close={this.closeDropdown} />
+                </React.Fragment>
               : ''}
             </div>
           </div>

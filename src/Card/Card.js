@@ -11,7 +11,6 @@ import Toast from '../Ui/Toast';
 import Popup from '../Ui/Popup';
 import Confirm from '../Ui/Confirm';
 
-
 import './Card.scss';
 import '../Ui/Ui.scss';
 
@@ -24,7 +23,7 @@ class Card extends Component {
     confirm: false,
     dropdown: false,
   }
-  toastMsg = ()=>{
+    toastMsg = ()=>{
     this.setState({toast: true});
     setTimeout(()=> this.setState({toast: false}), 1000);
   }
@@ -38,8 +37,9 @@ class Card extends Component {
     this.setState({confirm: true});
   }
   closeConfirm = () =>{
-    this.setState({confirm: false})
+    this.setState({confirm: false});
   }
+  
 
   render() {
     return (
@@ -70,8 +70,9 @@ class Card extends Component {
 
 
         {this.state.toast ? 
-          <Toast msg="토스트 메시지가 뜹니다" />
+          <Toast msg="팔로우 됐습니다" />
         : ''}
+        
         {this.state.confirm ? 
           <Confirm
             title="이 유저 뮤트하기"
@@ -79,6 +80,7 @@ class Card extends Component {
             close={this.closeConfirm}
            /> 
         : ''}
+        
         {this.state.popup ? 
           <Popup
             title="신고사유"

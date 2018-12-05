@@ -4,6 +4,7 @@ class Dropdown extends Component {
   state = {
     dropdown: false,
   }
+  
   render() {
     return (
       <div className="dropdown">
@@ -21,8 +22,9 @@ class Dropdown extends Component {
         </div>
         <div className="item"><button type="button"><i className="fas fa-pencil-alt"></i>카드에 작성하기</button></div>
         <div className="item"><button type="button"><i className="fas fa-external-link-alt"></i>외부에 공유하기</button></div>
-
+        
       </div>
+      
     );
   }
 }

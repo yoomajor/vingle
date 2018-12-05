@@ -1,12 +1,20 @@
 import React, { Component } from 'react';
 import Dropdown from '../Ui/Dropdown';
+import Dimm from '../Ui/Dimm';
 
 class CardUser extends Component {
   state = {
     dropdown: false,
   }
-  openDropdown = (e) =>{
-    this.setState({dropdown: true});
+  openDropdown = () =>{
+    this.setState({
+      dropdown: true
+    });
+  }
+  closeDropdown = () =>{
+    this.setState({
+      dropdown: false
+    });
   }
 
   render() {
@@ -22,7 +30,10 @@ class CardUser extends Component {
               <button type="button" onClick={this.openDropdown}><i className="fas fa-share-alt"></i><span className="label">보내기</span></button>
               {/* 글로벌 기능 :: 드롭다운 */}
               {this.state.dropdown ? 
-                <Dropdown />
+                <React.Fragment>
+                  <Dropdown />
+                  <Dimm close={this.closeDropdown} />
+                </React.Fragment>
               : ''}
             </div>
           </div>
