@@ -16,13 +16,13 @@ import '../Ui/Ui.scss';
 
 
 class Card extends Component {
-
   state = {
     toast: false,
     popup: false,
     confirm: false,
     dropdown: false,
   }
+
   toastMsg = ()=>{
     this.setState({toast: true});
     setTimeout(()=> this.setState({toast: false}), 1000);
@@ -42,13 +42,16 @@ class Card extends Component {
   
 
   render() {
+
     return (
-      <React.Fragment>
+      <>
         {/* 기능 테스트용 임시 버튼, 추후 개별 모듈화 예정 */}
-        <p>[기능 테스트]</p>
-        <button className="btn" onClick={this.toastMsg}>토스트메시지</button>
-        <button className="btn" onClick={this.openConfirm}>컨펌메시지</button>
-        <button className="btn" onClick={this.openPopup}>팝업</button>
+        <div className="testBox">
+          <p>[기능 테스트]</p>
+          <button className="btn" onClick={this.toastMsg}>토스트메시지</button>
+          <button className="btn" onClick={this.openConfirm}>컨펌메시지</button>
+          <button className="btn" onClick={this.openPopup}>팝업</button>
+        </div>
 
 
         {/* 카드 */}
@@ -68,28 +71,28 @@ class Card extends Component {
           <CardUtil />
         </div>
 
+      
+        {this.state.toast && 
+          <Toast msg="toast message" /> 
+        }
 
-        {this.state.toast ? 
-          <Toast msg="팔로우 됐습니다" />
-        : ''}
-        
-        {this.state.confirm ? 
+        {this.state.confirm && 
           <Confirm
             title="이 유저 뮤트하기"
             html="뮤트하면 더 이상 이 회원의 카드가 피드에 나타나지 않습니다. 뮤트하시겠어요?"
             close={this.closeConfirm}
            /> 
-        : ''}
+        }
         
-        {this.state.popup ? 
+        {this.state.popup &&
           <Popup
             title="이 콘텐츠를 신고하는 이유는 무엇인가요?"
             type="report"
             close={this.closePopup}
           /> 
-        : ''}
+        }
 
-      </React.Fragment>
+      </>
     );
   }
 }

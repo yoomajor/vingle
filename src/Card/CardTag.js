@@ -4,7 +4,7 @@ class CardUser extends Component {
 
   render() {
     return (
-      <React.Fragment>
+      <>
         {/* 카드 :: 태그 */}
         <div className="tag">
           <span className="list">
@@ -13,7 +13,7 @@ class CardUser extends Component {
           </span>
           <span className="more">+1개 관심사</span>
         </div>
-      </React.Fragment>
+      </>
     );
   }
 }

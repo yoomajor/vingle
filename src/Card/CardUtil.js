@@ -19,7 +19,7 @@ class CardUser extends Component {
 
   render() {
     return (
-      <React.Fragment>
+      <>
         {/* 카드 :: 유틸 - 좋아요, 댓글, 보내기 */}
         <div className="util">
           <div className="liked"><button type="button"><i className="far fa-heart"></i><i className="fas fa-heart"></i><span className="label">좋아요</span></button></div>
@@ -29,16 +29,16 @@ class CardUser extends Component {
             <div className="dropdownGroup">
               <button type="button" onClick={this.openDropdown}><i className="fas fa-share-alt"></i><span className="label">보내기</span></button>
               {/* 글로벌 기능 :: 드롭다운 */}
-              {this.state.dropdown ? 
-                <React.Fragment>
+              {this.state.dropdown &&
+                <>
                   <Dropdown type="utilShare" />
                   <Dimm close={this.closeDropdown} />
-                </React.Fragment>
-              : ''}
+                </>
+              }
             </div>
           </div>
         </div>
-      </React.Fragment>
+      </>
     );
   }
 }

@@ -4,7 +4,7 @@ class CardUser extends Component {
 
   render() {
     return (
-      <React.Fragment>
+      <>
         {/* 카드 :: 첨부 - 페이지 링크형태 */}
         <div className="added share page">
           <a href="#" target="_blank">
@@ -18,7 +18,7 @@ class CardUser extends Component {
           </a>
           <button type="button" className="more">+ 1개의 링크 더 보기</button>
         </div>
-      </React.Fragment>
+      </>
     );
   }
 }

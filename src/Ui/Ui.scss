@@ -204,6 +204,11 @@ $shadow:0 2px 8px rgba(0,0,0,0.3);
     .btn {
         padding:5px 15px;
     }
+    .dropdown {
+        left:auto;
+        right:0;
+        margin-right:-15px;
+    }
     #toast {
         .msg {
             padding:10px 0;

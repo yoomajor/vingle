@@ -4,7 +4,7 @@ class CardUser extends Component {
 
   render() {
     return (
-      <React.Fragment>
+      <>
         {/* 카드 :: 첨부 - 이미지/동영상 : 썸네일형태 */}
         <div className="added thumb thumbratio_w thumbtype_5">
             <div className="box clear">
@@ -20,7 +20,7 @@ class CardUser extends Component {
               </div>
             </div>
           </div>
-      </React.Fragment>
+      </>
     );
   }
 }
