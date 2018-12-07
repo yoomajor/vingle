@@ -24,7 +24,9 @@ class Card extends Component {
   }
 
   toastMsg = ()=>{
-    this.setState({toast: true});
+    this.setState({
+      toast: true,
+    });
     setTimeout(()=> this.setState({toast: false}), 1000);
   }
   openPopup = ()=>{
@@ -73,7 +75,9 @@ class Card extends Component {
 
       
         {this.state.toast && 
-          <Toast msg="toast message" /> 
+          <Toast 
+            msg="토스트"
+          /> 
         }
 
         {this.state.confirm && 

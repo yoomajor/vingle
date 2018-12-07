@@ -54,12 +54,6 @@ class Dropdown extends Component {
                                     extra={util.extra}
                                     key={util.id}/>);
           })}
-          <div className="item">
-            <button type="button"><i className="fas fa-paperclip"></i> 기본 컬렉션에 저장하기</button>
-            <button type="button" title="다른 컬렉션 선택" className="more"><i className="fas fa-plus-square"></i><span className="blind">다른 컬렉션 선택</span></button>
-          </div>
-          <div className="item"><button type="button"><i className="fas fa-pencil-alt"></i>카드에 작성하기</button></div>
-          <div className="item"><button type="button"><i className="fas fa-external-link-alt"></i>외부에 공유하기</button></div>
         </>
         }
       </div>

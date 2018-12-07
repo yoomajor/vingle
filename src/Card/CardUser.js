@@ -9,7 +9,9 @@ class CardUser extends Component {
   }
   
   followUser = () =>{
-    this.setState({isFollow: !this.state.isFollow});
+    this.setState({
+      isFollow: !this.state.isFollow,
+    });
   }
   openDropdown = () =>{
     this.setState({
@@ -34,7 +36,7 @@ class CardUser extends Component {
           </div>
           <div className="follow">
             <button type="button" 
-                    className={this.state.isFollow && 'active'} 
+                    className={this.state.isFollow ? 'active' : ''} 
                     onClick={this.followUser}>
                     {this.state.isFollow ? '팔로잉' : '+ 팔로우'}
             </button>
