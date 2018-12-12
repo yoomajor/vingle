@@ -29,10 +29,6 @@ class CardUser extends Component {
   
 
   render() {
-    const {
-      userConfirm, 
-      userPopup,
-    } = this.props
 
     return (
       <>
@@ -96,10 +92,6 @@ class Dropdown extends Component {
   
   render() {
 
-    const {
-      userConfirm, 
-      userPopup,
-    } = this.props
     
     return (
       <div className="dropdown">
@@ -138,10 +130,6 @@ class DropdownItem extends Component {
   }
 
   render() {
-    const {
-      userConfirm, 
-      userPopup,
-    } = this.props
 
     return (
       <div className={this.props.extra ? 'extraItem' : 'item'}>

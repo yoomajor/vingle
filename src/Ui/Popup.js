@@ -5,6 +5,7 @@ class Popup extends Component {
     popup: false,
     type: '',
     checked: '',
+    creatable: false,
     userReport: [
       {label:'스팸, 광고', name:'user_report', for:'report_1'}, 
       {label:'외설적인 내용', name:'user_report', for:'report_2'}, 
@@ -38,6 +39,15 @@ class Popup extends Component {
   chkReport = (e)=>{
     this.setState({ checked: e.target.id })
   }
+
+  createCollection = (e)=>{
+    if (e.target.value){
+      this.setState({creatable: true})
+    } else {
+      this.setState({creatable: false})
+    }
+  }
+
   
   render() {
     const {
@@ -60,8 +70,14 @@ class Popup extends Component {
                 {this.state.userReport.map((report, i) => {
                   return (
                     <div className="item" key={i}>
-                      <input type="radio" name={report.name} id={report.for} onChange={this.chkReport} />
-                      <label htmlFor={report.for}>{report.label}</label>
+                      <input type="radio" 
+                        name={report.name} 
+                        id={report.for} 
+                        onChange={this.chkReport}
+                      />
+                      <label htmlFor={report.for}>
+                        {report.label}
+                      </label>
 
                       {i === 4 && this.state.checked === 'report_5' && 
                         <div className="popupList popupInner checkbox">
@@ -127,32 +143,34 @@ class Popup extends Component {
             {this.props.type === 'collections' && 
               <>
                 <div className="popupList checkbox">
-                  <div className="item"><input type="checkbox" name="r_collection" id="r_collection_1" /><label for="r_collection_1"><i>Y</i>Yasdf</label></div>
-                  <div className="item"><input type="checkbox" name="r_collection" id="r_collection_2" /><label for="r_collection_2"><i>Y</i>Yasdf</label></div>
-                  <div className="item"><input type="checkbox" name="r_collection" id="r_collection_3" /><label for="r_collection_3"><i>Y</i>Yasdf</label></div>
+                  <div className="item"><input type="checkbox" name="r_collection" id="r_collection_1" /><label htmlFor="r_collection_1"><i>Y</i>Yasdf</label></div>
+                  <div className="item"><input type="checkbox" name="r_collection" id="r_collection_2" /><label htmlFor="r_collection_2"><i>Y</i>Yasdf</label></div>
+                  <div className="item"><input type="checkbox" name="r_collection" id="r_collection_3" /><label htmlFor="r_collection_3"><i>Y</i>Yasdf</label></div>
                 </div>
 
                 <div className="create">
                   <div className="item">
-                      <label for="c_collection"><i className="fas fa-plus"></i></label>
-                      <input type="text" id="c_collection" placeholder="새 컬렉션 만들기" />
-                      <button type="button">만들기</button>
+                      <label htmlFor="c_collection"><i className="fas fa-plus"></i></label>
+                      <input type="text" id="c_collection" onChange={this.createCollection} placeholder="새 컬렉션 만들기" />
+                      {this.state.creatable &&
+                        <button type="button">만들기</button>
+                      }
                   </div>
                 </div>
 
                 <div className="popupList checkbox">
-                  <div className="item"><input type="checkbox" name="collection" id="collection_1" /><label for="collection_1"><i>Y</i>Yasdf</label></div>
-                  <div className="item"><input type="checkbox" name="collection" id="collection_2" /><label for="collection_2"><i>Y</i>Yasdf</label></div>
-                  <div className="item"><input type="checkbox" name="collection" id="collection_3" /><label for="collection_3"><i>Y</i>Yasdf</label></div>
-                  <div className="item"><input type="checkbox" name="collection" id="collection_4" /><label for="collection_4"><i>Y</i>Yasdf</label></div>
-                  <div className="item"><input type="checkbox" name="collection" id="collection_5" /><label for="collection_5"><i>Y</i>Yasdf</label></div>
+                  <div className="item"><input type="checkbox" name="collection" id="collection_1" /><label htmlFor="collection_1"><i>Y</i>Yasdf</label></div>
+                  <div className="item"><input type="checkbox" name="collection" id="collection_2" /><label htmlFor="collection_2"><i>Y</i>Yasdf</label></div>
+                  <div className="item"><input type="checkbox" name="collection" id="collection_3" /><label htmlFor="collection_3"><i>Y</i>Yasdf</label></div>
+                  <div className="item"><input type="checkbox" name="collection" id="collection_4" /><label htmlFor="collection_4"><i>Y</i>Yasdf</label></div>
+                  <div className="item"><input type="checkbox" name="collection" id="collection_5" /><label htmlFor="collection_5"><i>Y</i>Yasdf</label></div>
                 </div>
               </>
             }
 
             </div>
 
-            {this.props.type != 'share' && 
+            {this.props.type !== 'share' && 
             <div className="btns">
               <button type="button" className="btn" onClick={() => close()}>취소</button>
               <button type="button" className="btn red">확인</button>
@@ -165,7 +183,7 @@ class Popup extends Component {
     );
   }
 }
-
+/*
 class PopupItem extends Component {
   render() {
     return (
@@ -176,7 +194,7 @@ class PopupItem extends Component {
     );
   }
 }
-
+*/
 class PopupInnerItem extends Component {
   render() {
     return (
