@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 class Popup extends Component {
   state = {
     popup: false,
+    type: '',
     checked: '',
     userReport: [
       {label:'스팸, 광고', name:'user_report', for:'report_1'}, 
@@ -49,7 +50,7 @@ class Popup extends Component {
           <div className="frame">
             <button type="button" className="btnClose" onClick={() => close()}><i className="fas fa-times"></i><span className="blind">닫기</span></button>
             <div className="title">{this.props.title}</div>
-            <div className="entry">
+            <div className={"entry " + (this.props.type)}>
 
             {/* 카드-유저-신고 */}
             {this.props.type === 'report' && 
@@ -122,9 +123,36 @@ class Popup extends Component {
             </>
             }
 
+            {/* 컬렉션 선택 */}
+            {this.props.type === 'collections' && 
+              <>
+                <div className="popupList checkbox">
+                  <div className="item"><input type="checkbox" name="r_collection" id="r_collection_1" /><label for="r_collection_1"><i>Y</i>Yasdf</label></div>
+                  <div className="item"><input type="checkbox" name="r_collection" id="r_collection_2" /><label for="r_collection_2"><i>Y</i>Yasdf</label></div>
+                  <div className="item"><input type="checkbox" name="r_collection" id="r_collection_3" /><label for="r_collection_3"><i>Y</i>Yasdf</label></div>
+                </div>
+
+                <div className="create">
+                  <div className="item">
+                      <label for="c_collection"><i className="fas fa-plus"></i></label>
+                      <input type="text" id="c_collection" placeholder="새 컬렉션 만들기" />
+                      <button type="button">만들기</button>
+                  </div>
+                </div>
+
+                <div className="popupList checkbox">
+                  <div className="item"><input type="checkbox" name="collection" id="collection_1" /><label for="collection_1"><i>Y</i>Yasdf</label></div>
+                  <div className="item"><input type="checkbox" name="collection" id="collection_2" /><label for="collection_2"><i>Y</i>Yasdf</label></div>
+                  <div className="item"><input type="checkbox" name="collection" id="collection_3" /><label for="collection_3"><i>Y</i>Yasdf</label></div>
+                  <div className="item"><input type="checkbox" name="collection" id="collection_4" /><label for="collection_4"><i>Y</i>Yasdf</label></div>
+                  <div className="item"><input type="checkbox" name="collection" id="collection_5" /><label for="collection_5"><i>Y</i>Yasdf</label></div>
+                </div>
+              </>
+            }
+
             </div>
 
-            {this.props.isBtn === 'isBtn' && 
+            {this.props.type != 'share' && 
             <div className="btns">
               <button type="button" className="btn" onClick={() => close()}>취소</button>
               <button type="button" className="btn red">확인</button>

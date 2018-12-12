@@ -4,16 +4,16 @@ class Dropdown extends Component {
   state = {
     dropdown: false,
     userDropdown: [
-      {name:'이 유저 뮤트하기', evt:'confirm'},
-      {name:'신고하기', evt:'popup'},
-      {name:'수정하기', evt:'view'},
-      {name:'삭제하기', evt:'confirm'},
+      {name:'이 유저 뮤트하기', evt:'confirm', id:'mute'},
+      {name:'신고하기', evt:'popup', id:'report'},
+      {name:'수정하기', evt:'view', id:'modify'},
+      {name:'삭제하기', evt:'confirm', id:'del'},
     ],
     utilDropdown: [
-      {name:'다른 컬렉션 선택', ico:'fas fa-plus-square', extra:'more', evt:'popup'},
+      {name:'다른 컬렉션 선택', ico:'fas fa-plus-square', extra:'more', evt:'popup', id:'collections'},
       {name:'기본 컬렉션에 저장하기', ico:'fas fa-paperclip', evt:'toast'},
       {name:'카드에 작성하기', ico:'fas fa-pencil-alt', evt:'write'},
-      {name:'외부에 공유하기', ico:'fas fa-external-link-alt', evt:'popup'},
+      {name:'외부에 공유하기', ico:'fas fa-external-link-alt', evt:'popup', id:'share'},
     ],
   }
 
@@ -26,6 +26,11 @@ class Dropdown extends Component {
   }
   
   render() {
+
+    const {
+      userConfirm, 
+      userPopup,
+    } = this.props
     
     return (
       <div className="dropdown">
@@ -36,6 +41,8 @@ class Dropdown extends Component {
           {this.state.userDropdown.map((user, i) => {
               return (<DropdownItem name={user.name}
                                     evt={user.evt}
+                                    userConfirm={this.props.userConfirm}
+                                    userPopup={this.props.userPopup}
                                     key={i}/>);
           })}
         </>
@@ -47,6 +54,8 @@ class Dropdown extends Component {
           {this.state.utilDropdown.map((util, i) => {
               return (<DropdownItem name={util.name}
                                     evt={util.evt}
+                                    userConfirm={this.props.userConfirm}
+                                    userPopup={this.props.userPopup}
                                     ico={util.ico}
                                     extra={util.extra}
                                     key={i}/>);
@@ -62,9 +71,19 @@ class Dropdown extends Component {
 class DropdownItem extends Component {
   utilEvt = (evt) =>{
     evt = this.props.evt
-    console.log(evt)
+    if (evt === 'confirm') {
+      this.props.userConfirm()
+    }
+    if (evt === 'popup') {
+      this.props.userPopup()
+    }
   }
   render() {
+    const {
+      userConfirm, 
+      userPopup,
+    } = this.props
+
     return (
       <div className={this.props.extra ? 'extraItem' : 'item'}>
         <button type="button" title={this.props.name} className={this.props.extra} onClick={this.utilEvt}>

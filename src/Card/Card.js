@@ -21,26 +21,48 @@ class Card extends Component {
     popup: false,
     confirm: false,
     dropdown: false,
+    type: '',
   }
 
-  toastMsg = ()=>{
+  toastMsg = (tstmsg)=>{
+    let msg = tstmsg
     this.setState({
       toast: true,
+      msg: msg,
     });
     setTimeout(()=> this.setState({toast: false}), 1000);
   }
-  openPopup = ()=>{
-    this.setState({popup: true});
+
+  openPopup = (act, tit)=>{
+    let type = act
+    let title = tit
+    this.setState({
+      popup: true,
+      type: type,
+      title: title,
+    });
   }
   closePopup = ()=>{
     this.setState({popup: false});
   }
-  openConfirm = ()=>{
-    this.setState({confirm: true});
+
+  openConfirm = (act, tit, cont)=>{
+    let type = act
+    let title = tit
+    let html = cont
+
+    this.setState({
+      confirm: true,
+      type: type,
+      title: title,
+      html: html
+    });
   }
   closeConfirm = () =>{
     this.setState({confirm: false});
   }
+
+  
   
 
   render() {
@@ -58,7 +80,11 @@ class Card extends Component {
 
         {/* 카드 */}
         <div className="card">
-          <CardUser />
+          <CardUser
+            followToast={this.toastMsg}
+            userConfirm={this.openConfirm}
+            userPopup={this.openPopup}
+          />
 
           <CardTitle />
           <CardContents />
@@ -70,29 +96,33 @@ class Card extends Component {
 
           <CardTag />
 
-          <CardUtil />
+          <CardUtil
+            utilConfirm={this.openConfirm}
+            utilPopup={this.openPopup}
+            utilToast={this.toastMsg}
+          />
         </div>
 
       
         {this.state.toast && 
           <Toast 
-            msg="토스트"
+            msg={this.state.msg}
           /> 
         }
 
         {this.state.confirm && 
           <Confirm
-            title="이 유저 뮤트하기"
-            html="뮤트하면 더 이상 이 회원의 카드가 피드에 나타나지 않습니다. 뮤트하시겠어요?"
+            title={this.state.title}
+            html={this.state.html}
+            type={this.state.type}
             close={this.closeConfirm}
            /> 
         }
         
         {this.state.popup &&
           <Popup
-            title="이 콘텐츠를 신고하는 이유는 무엇인가요?"
-            type="report"
-            isBtn="isBtn"
+            title={this.state.title}
+            type={this.state.type}
             close={this.closePopup}
           /> 
         }
