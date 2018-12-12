@@ -3,6 +3,18 @@ import React, { Component } from 'react';
 class Dropdown extends Component {
   state = {
     dropdown: false,
+    userDropdown: [
+      {name:'이 유저 뮤트하기', evt:'confirm'},
+      {name:'신고하기', evt:'popup'},
+      {name:'수정하기', evt:'view'},
+      {name:'삭제하기', evt:'confirm'},
+    ],
+    utilDropdown: [
+      {name:'다른 컬렉션 선택', ico:'fas fa-plus-square', extra:'more', evt:'popup'},
+      {name:'기본 컬렉션에 저장하기', ico:'fas fa-paperclip', evt:'toast'},
+      {name:'카드에 작성하기', ico:'fas fa-pencil-alt', evt:'write'},
+      {name:'외부에 공유하기', ico:'fas fa-external-link-alt', evt:'popup'},
+    ],
   }
 
   static defaultProps = {
@@ -10,24 +22,7 @@ class Dropdown extends Component {
     ico: '',
     id: '',
     extra:'',
-  }
-
-  constructor(props) {
-    super(props);
-    this.state = {
-        userDropdown: [
-          {name:'이 유저 뮤트하기', id:0},
-          {name:'신고하기', id:1},
-          {name:'수정하기', id:2},
-          {name:'삭제하기', id:3},
-        ],
-        utilDropdown: [
-          {name:'다른 컬렉션 선택', ico:'fas fa-plus-square', extra:'more', id:0},
-          {name:'기본 컬렉션에 저장하기', ico:'fas fa-paperclip', id:1,},
-          {name:'카드에 작성하기', ico:'fas fa-pencil-alt', id:2},
-          {name:'외부에 공유하기', ico:'fas fa-external-link-alt', id:3},
-        ]
-    };
+    evt:'',
   }
   
   render() {
@@ -40,7 +35,8 @@ class Dropdown extends Component {
         <>
           {this.state.userDropdown.map((user, i) => {
               return (<DropdownItem name={user.name}
-                                    key={user.id}/>);
+                                    evt={user.evt}
+                                    key={i}/>);
           })}
         </>
         }
@@ -50,9 +46,10 @@ class Dropdown extends Component {
         <>
           {this.state.utilDropdown.map((util, i) => {
               return (<DropdownItem name={util.name}
+                                    evt={util.evt}
                                     ico={util.ico}
                                     extra={util.extra}
-                                    key={util.id}/>);
+                                    key={i}/>);
           })}
         </>
         }
@@ -63,10 +60,14 @@ class Dropdown extends Component {
 }
 
 class DropdownItem extends Component {
+  utilEvt = (evt) =>{
+    evt = this.props.evt
+    console.log(evt)
+  }
   render() {
     return (
       <div className={this.props.extra ? 'extraItem' : 'item'}>
-        <button type="button" title={this.props.name} className={this.props.extra}>
+        <button type="button" title={this.props.name} className={this.props.extra} onClick={this.utilEvt}>
           {this.props.ico &&
             <i className={this.props.ico}></i>
            }

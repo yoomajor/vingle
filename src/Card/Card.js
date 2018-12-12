@@ -92,6 +92,7 @@ class Card extends Component {
           <Popup
             title="이 콘텐츠를 신고하는 이유는 무엇인가요?"
             type="report"
+            isBtn="isBtn"
             close={this.closePopup}
           /> 
         }

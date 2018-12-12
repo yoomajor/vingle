@@ -5,7 +5,9 @@ import './Common.css';
 class App extends Component {
   render() {
     return (
+      <>
       <Card />
+      </>
     );
   }
 }
