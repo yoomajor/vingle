@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import CardUser from './CardUser';
-import CardTitle from './CardTitle';
 import CardContents from './CardContents';
 import CardAddedThumb from './CardAddedThumb';
 import CardAddedEmbed from './CardAddedEmbed';
@@ -91,8 +90,6 @@ class Card extends Component {
 
 
   render() {
-
-    const { content } = this.state;
 
     return (
       <>

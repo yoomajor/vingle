@@ -1,17 +1,25 @@
 import React, { Component } from 'react';
-import Detail from '../Detail/Detail';
 import Dimm from '../Ui/Dimm';
 
 class CardUser extends Component {
   state = {
     isFollow: false,
     dropdown: false,
+    cardInfo: {
+      name: '문명6:흥망성쇠',
+      id: 'civilization6',
+      thumb:'https://media.vingle.net/images/us_l/w5w8vzbw6j.jpg',
+      time: '25분 전',
+    },
+
   }
   
   followUser = () =>{
+    const { cardInfo } = this.state;
     this.setState({
       isFollow: !this.state.isFollow,
     });
+    console.log(cardInfo.id);
   }
 
   openDropdown = () =>{
@@ -28,15 +36,18 @@ class CardUser extends Component {
   
 
   render() {
+    const {
+      cardInfo
+    } = this.state;
 
     return (
       <>
         {/* 카드 :: 유저인포 */}
-        <div className="user clear">
-          <div className="img"><a href="#"><img src="https://media.vingle.net/images/us_l/w5w8vzbw6j.jpg" alt="" /></a></div>
+        <div className="user">
+          <div className="img"><a href="#"><img src={cardInfo.thumb} alt="" /></a></div>
           <div className="info">
-            <div className="name"><a href="#">user name</a></div>
-            <div className="time">1분 전</div>
+            <div className="name"><a href="#">{cardInfo.name}</a></div>
+            <div className="time">{cardInfo.time}</div>
           </div>
           <div className="follow">
             <button type="button" 
@@ -74,8 +85,8 @@ class Dropdown extends Component {
   state = {
     dropdown: false,
     userDropdown: [
-      {name:'이 유저 뮤트하기', evt:'confirm', id:'mute', tit:'이 유저 뮤트하기123', cont:'뮤트하면 더 이상 이 회원의 카드가 피드에 나타나지 않습니다. 뮤트하시겠어요?123'},
-      {name:'신고하기', evt:'popup', id:'report', tit:'이 콘텐츠를 신고하는 이유는 무엇인가요?asd'},
+      {name:'이 유저 뮤트하기', evt:'confirm', id:'mute', tit:'이 유저 뮤트하기', cont:'뮤트하면 더 이상 이 회원의 카드가 피드에 나타나지 않습니다. 뮤트하시겠어요?'},
+      {name:'신고하기', evt:'popup', id:'report', tit:'이 콘텐츠를 신고하는 이유는 무엇인가요?'},
       {name:'수정하기', evt:'write', id:'modify'},
       {name:'삭제하기', evt:'confirm', id:'del', tit:'삭제하기', cont:'정말 이 카드를 삭제하시겠습니까?'},
     ],

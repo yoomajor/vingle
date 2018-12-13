@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 class UserReport extends Component {
   state = {
     checked: false,
+    d_checked: false,
     userReport: [
       {label:'스팸, 광고', name:'user_report', for:'report_1'}, 
       {label:'외설적인 내용', name:'user_report', for:'report_2'}, 
@@ -23,6 +24,7 @@ class UserReport extends Component {
       }, 
       {label:'기타', name:'user_report', for:'report_6'}, 
     ],
+    related: [],
   }
   static defaultProps = {
     label:'',
@@ -35,12 +37,22 @@ class UserReport extends Component {
     this.setState({
       checked: e.target.id,
       reason: e.target.value,
-    })
+    });
   }
   chkReportDetail = (e)=>{
-    this.setState({
-      d_checked: e.target.id,
-    })
+    const { related } = this.state;
+    if (e.target.checked) {
+      this.setState({
+        related: related.concat(...related, e.target.id)
+      })
+      console.log('concat')
+    } else {
+      this.setState({
+        related: related.filter(e.target.id)
+      })
+      console.log('filter')
+    }
+    console.log('id : '+e.target.id+ ' / related : '+related+' / checked : '+related.length);
   }
   chkEtc = (e)=>{
     this.setState({
@@ -52,13 +64,13 @@ class UserReport extends Component {
     e.preventDefault();
     
     let isChecked = this.state.checked,
-        d_isChecked = this.state.d_checked,
+        d_isChecked = this.state.related,
         d_etc = this.state.etc,
         msg = this.state.reason;
 
     if (!isChecked){
       this.props.completeMsg('사유를 선택하세요.');
-    } else if (isChecked === 'report_5' && !d_isChecked){
+    } else if (isChecked === 'report_5' && d_isChecked.length ===0){
       this.props.completeMsg('이 콘텐츠와 관련없는 관심사를 선택하세요.');
     } else if (isChecked === 'report_6' && !d_etc){
       this.props.completeMsg('기타 사유를 입력하세요.');
@@ -66,6 +78,7 @@ class UserReport extends Component {
       this.props.close();
       this.props.completeMsg('['+ msg +'] 사유로 신고되었습니다.');
     }
+    console.log(isChecked, d_isChecked, d_etc)
 
   }
 
