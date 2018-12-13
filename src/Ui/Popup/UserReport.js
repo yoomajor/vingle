@@ -39,21 +39,21 @@ class UserReport extends Component {
       reason: e.target.value,
     });
   }
+
   chkReportDetail = (e)=>{
+    let isChecked = e.target.checked;
     const { related } = this.state;
-    if (e.target.checked) {
+    if (isChecked) {
       this.setState({
-        related: related.concat(...related, e.target.id)
+        related: related.concat(e.target.id)
       })
-      console.log('concat')
     } else {
       this.setState({
-        related: related.filter(e.target.id)
+        related: related.filter(item => item !== e.target.id)
       })
-      console.log('filter')
     }
-    console.log('id : '+e.target.id+ ' / related : '+related+' / checked : '+related.length);
   }
+
   chkEtc = (e)=>{
     this.setState({
       etc: e.target.value,
@@ -113,13 +113,13 @@ class UserReport extends Component {
                 </label>
 
                 {i === 4 && this.state.checked === 'report_5' && 
-                  <div className="popupList popupInner checkbox">
+                  <div className="popupList popupInner checkbox" onChange={this.chkReportDetail}>
                     <p><strong>이 콘텐츠와 관련없는 관심사를 선택하세요.</strong></p>
                     {userReport[4].inner.map((cont, i) => {
                       return (<InnerReport label={cont.label}
                                           name={cont.name}
                                           for={cont.for}
-                                          chk={this.chkReportDetail}
+                                          
                                           key={i} />);
                     })}
                   </div>
@@ -157,8 +157,7 @@ class InnerReport extends Component {
       <div className="item">
         <input type="checkbox" 
                name={this.props.name} 
-               id={this.props.for}
-               onChange={this.props.chk} />
+               id={this.props.for} />
         <label htmlFor={this.props.for}>{this.props.label}</label>
       </div>
     );
