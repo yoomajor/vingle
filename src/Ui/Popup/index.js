@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import UserReport from './UserReport';
 import Collections from './Collections';
+import Share from './Share';
 
 class Popup extends Component {
   state = {
@@ -47,6 +48,13 @@ class Popup extends Component {
             {/* 컬렉션 선택 */}
             {this.props.type === 'collections' && 
               <Collections completeMsg={this.props.completeMsg}
+                            close={this.props.close}
+                />
+            }
+
+            {/* 외부 서비스로 공유하기 */}
+            {this.props.type === 'share' && 
+              <Share completeMsg={this.props.completeMsg}
                             close={this.props.close}
                 />
             }

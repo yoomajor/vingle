@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class CardUser extends Component {
+class CardAddedEmbed extends Component {
 
   render() {
     return (
@@ -18,4 +18,4 @@ class CardUser extends Component {
   }
 }
 
-export default CardUser;
+export default CardAddedEmbed;

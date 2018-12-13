@@ -89,10 +89,15 @@ $shadow:0 2px 8px rgba(0,0,0,0.3);
     line-height:1.5;
     white-space:pre-line;
     .more {
+        position: relative;
+        margin-left:-6.5em;
+        padding-left:3em;
         color:$gray;
+        background-image: linear-gradient(to right, transparent , #fff 55%);
         &:before {
             content:"...";
             color:$black;
+            
         }
     }
 }

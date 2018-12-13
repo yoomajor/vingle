@@ -1,29 +1,15 @@
 import React, { Component } from 'react';
-import Detail from '../Detail/Detail';
 
-class CardUser extends Component {
-  state = {
-    detail: false,
-  }
-
-  openDetail = () =>{
-    this.setState({detail: true});
-  }
-  closeDetail = () =>{
-    this.setState({detail: false});
-  }
+class CardTitle extends Component {
 
   render() {
     return (
       <>
         {/* 카드 :: 제목 */}
-        <div className="title" onClick={this.openDetail}>카드 제목</div>
-        {this.state.detail && 
-            <Detail close={this.closeDetail} />
-        }
+        <div className="title" onClick={this.props.view}>카드 제목</div>
       </>
     );
   }
 }
 
-export default CardUser;
+export default CardTitle;

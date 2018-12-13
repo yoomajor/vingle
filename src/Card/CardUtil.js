@@ -64,7 +64,8 @@ class CardUser extends Component {
                 <>
                   <Dropdown confirm={this.props.confirm} 
                             popup={this.props.popup} 
-                            completeMsg={this.props.completeMsg} />
+                            completeMsg={this.props.completeMsg}
+                            write={this.props.write} />
                   <Dimm close={this.closeDropdown} />
                 </>
               }
@@ -108,6 +109,7 @@ class Dropdown extends Component {
                                   confirm={this.props.confirm}
                                   popup={this.props.popup}
                                   completeMsg={this.props.completeMsg}
+                                  write={this.props.write}
                                   ico={util.ico}
                                   extra={util.extra}
                                   key={i}/>);
@@ -133,6 +135,9 @@ class DropdownItem extends Component {
     }
     if (evt === 'toast') {
       this.props.completeMsg(tstmsg)
+    }
+    if (evt === 'write') {
+      this.props.write()
     }
   }
 

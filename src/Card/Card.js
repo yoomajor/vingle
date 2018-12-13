@@ -11,6 +11,10 @@ import Toast from '../Ui/Toast';
 import Popup from '../Ui/Popup/';
 import Confirm from '../Ui/Confirm';
 
+
+import Detail from '../Detail/Detail';
+import Write from '../Write/Write';
+
 import './Card.scss';
 import '../Ui/Ui.scss';
 
@@ -21,20 +25,24 @@ class Card extends Component {
     popup: false,
     confirm: false,
     dropdown: false,
+    detail:false,
+    write:false,
     type: '',
   }
 
-  toastMsg = (tstmsg)=>{
+  // 토스트 메시지
+  toastMsg = (tstmsg)=>{ // 토스트메시지 문구
     let msg = tstmsg;
 
     this.setState({
       toast: true,
       msg: msg,
     });
-    setTimeout(()=> this.setState({toast: false}), 1000);
+    setTimeout(()=> this.setState({toast: false}), 1000); // 1초 후 hide
   }
 
-  openPopup = (act, tit)=>{
+  // 팝업
+  openPopup = (act, tit)=>{ // 팝업콘텐츠 종류(ex: report, collections...), 팝업타이틀 문구
     let type = act,
         title = tit;
 
@@ -48,7 +56,8 @@ class Card extends Component {
     this.setState({popup: false});
   }
 
-  openConfirm = (act, tit, cont)=>{
+  // 컨펌
+  openConfirm = (act, tit, cont)=>{ // (확인 후 토스트메시지를 위한)컨펌메시지 종류(ex: mute, del...), 컨펌타이틀 문구, 컨펌콘텐츠 문구
     let type = act,
         title = tit,
         html = cont;
@@ -64,8 +73,26 @@ class Card extends Component {
     this.setState({confirm: false});
   }
 
+  // (임시)상세페이지
+  openDetail = () =>{
+    this.setState({detail: true});
+  }
+  closeDetail = () =>{
+    this.setState({detail: false});
+  }
+
+  // (임시)작성/수정페이지
+  openWrite = () =>{
+    this.setState({write: true});
+  }
+  closeWrite = () =>{
+    this.setState({write: false});
+  }
+
 
   render() {
+
+    const { content } = this.state;
 
     return (
       <>
@@ -76,10 +103,12 @@ class Card extends Component {
             confirm={this.openConfirm}
             popup={this.openPopup}
             completeMsg={this.toastMsg}
+            write={this.openWrite}
           />
-
-          <CardTitle />
-          <CardContents />
+          
+          <CardContents
+            view={this.openDetail}
+          />
 
           {/* 카드 :: 첨부 - 최상위 첨부파일 포맷에 따라 썸네일, 임베드, 페이지링크 형태로 보여지는 화면이 나뉜다 */}
           <CardAddedThumb />
@@ -92,6 +121,7 @@ class Card extends Component {
             confirm={this.openConfirm}
             popup={this.openPopup}
             completeMsg={this.toastMsg}
+            write={this.openWrite}
           />
         </div>
 
@@ -120,6 +150,19 @@ class Card extends Component {
             close={this.closePopup}
             completeMsg={this.toastMsg}
           /> 
+        }
+
+
+        {this.state.detail && 
+          <Detail
+            close={this.closeDetail}
+           />
+        }
+
+        {this.state.write && 
+          <Write
+            close={this.closeWrite}
+           />
         }
 
       </>

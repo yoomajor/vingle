@@ -6,7 +6,6 @@ class CardUser extends Component {
   state = {
     isFollow: false,
     dropdown: false,
-    detail: false,
   }
   
   followUser = () =>{
@@ -58,6 +57,7 @@ class CardUser extends Component {
                   <Dropdown confirm={this.props.confirm} 
                             popup={this.props.popup}
                             completeMsg={this.props.completeMsg}
+                            write={this.props.write}
                    />
                   <Dimm close={this.closeDropdown} />
                 </>
@@ -65,10 +65,6 @@ class CardUser extends Component {
             </div>
           </div>
         </div>
-
-        {this.state.detail && 
-           <Detail close={this.closeDetail} />
-        }
       </>
     );
   }
@@ -80,7 +76,7 @@ class Dropdown extends Component {
     userDropdown: [
       {name:'이 유저 뮤트하기', evt:'confirm', id:'mute', tit:'이 유저 뮤트하기123', cont:'뮤트하면 더 이상 이 회원의 카드가 피드에 나타나지 않습니다. 뮤트하시겠어요?123'},
       {name:'신고하기', evt:'popup', id:'report', tit:'이 콘텐츠를 신고하는 이유는 무엇인가요?asd'},
-      {name:'수정하기', evt:'view', id:'modify'},
+      {name:'수정하기', evt:'write', id:'modify'},
       {name:'삭제하기', evt:'confirm', id:'del', tit:'삭제하기', cont:'정말 이 카드를 삭제하시겠습니까?'},
     ],
   }
@@ -111,6 +107,7 @@ class Dropdown extends Component {
                                     confirm={this.props.confirm}
                                     popup={this.props.popup}
                                     completeMsg={this.props.completeMsg}
+                                    write={this.props.write}
                                     key={i}/>);
           })}
         </>
@@ -138,6 +135,9 @@ class DropdownItem extends Component {
     }
     if (evt === 'toast') {
       this.props.completeMsg(tstmsg);
+    }
+    if (evt === 'write') {
+      this.props.write()
     }
   }
 

@@ -5,6 +5,9 @@ $black:#343434;
 $blue:#33bece;
 $red:#f16f6f;
 $green:#9fd443;
+$facebook:#3a599a;
+$twitter:#26ade3;
+$band:#40b649;
 $shadow:0 2px 8px rgba(0,0,0,0.3);
 
 .btn {
@@ -255,6 +258,38 @@ $shadow:0 2px 8px rgba(0,0,0,0.3);
             }
             :checked+label:before {
                 color:$black;
+            }
+        }
+    }
+    .share {
+        .shareList {
+            display:flex;
+            justify-content:center;
+            .item {
+                padding:0 10px;
+                button {
+                    width:44px;
+                    height:44px;
+                    border-radius:100%;
+                    border:2px solid $light-gray;
+                    background:url($url + 'ico_facebook.png') no-repeat;
+                    background-size:cover;
+                    &.facebook {
+                        background-image: url($url + 'ico_facebook.png');
+                    }
+                    &.twitter {
+                        background-image: url($url + 'ico_twitter.png');
+                    }
+                    &.band {
+                        background-image: url($url + 'ico_band.png');
+                    }
+                    &.clipboard {
+                        background-image: url($url + 'ico_clipboard.png');
+                    }
+                    &:hover {
+                        box-shadow:0 0 5px rgba(0,0,0,0.15);
+                    }
+                }
             }
         }
     }
