@@ -62,7 +62,9 @@ class CardUser extends Component {
               {/* 글로벌 기능 :: 드롭다운 */}
               {this.state.dropdown &&
                 <>
-                  <Dropdown utilConfirm={this.props.utilConfirm} utilPopup={this.props.utilPopup} utilToast={this.props.utilToast} />
+                  <Dropdown confirm={this.props.confirm} 
+                            popup={this.props.popup} 
+                            completeMsg={this.props.completeMsg} />
                   <Dimm close={this.closeDropdown} />
                 </>
               }
@@ -103,9 +105,9 @@ class Dropdown extends Component {
                                   act={util.id}
                                   tit={util.tit}
                                   msg={util.msg}
-                                  utilConfirm={this.props.utilConfirm}
-                                  utilPopup={this.props.utilPopup}
-                                  utilToast={this.props.utilToast}
+                                  confirm={this.props.confirm}
+                                  popup={this.props.popup}
+                                  completeMsg={this.props.completeMsg}
                                   ico={util.ico}
                                   extra={util.extra}
                                   key={i}/>);
@@ -118,19 +120,19 @@ class Dropdown extends Component {
 class DropdownItem extends Component {
   
   utilEvt = () =>{
-    let evt = this.props.evt
-    let act = this.props.act
-    let tit = this.props.tit
-    let tstmsg = this.props.msg
+    let evt = this.props.evt,
+        act = this.props.act,
+        tit = this.props.tit,
+        tstmsg = this.props.msg;
 
     if (evt === 'confirm') {
-      this.props.utilConfirm(act, tit)
+      this.props.confirm(act, tit)
     }
     if (evt === 'popup') {
-      this.props.utilPopup(act, tit)
+      this.props.popup(act, tit)
     }
     if (evt === 'toast') {
-      this.props.utilToast(tstmsg)
+      this.props.completeMsg(tstmsg)
     }
   }
 

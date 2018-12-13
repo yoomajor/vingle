@@ -5,7 +5,7 @@ class Popup extends Component {
     popup: false,
     type: '',
     checked: '',
-    creatable: false,
+    
     userReport: [
       {label:'스팸, 광고', name:'user_report', for:'report_1'}, 
       {label:'외설적인 내용', name:'user_report', for:'report_2'}, 
@@ -26,6 +26,11 @@ class Popup extends Component {
       }, 
       {label:'기타', name:'user_report', for:'report_6'}, 
     ],
+
+    collections: [
+      {label: '기본 컬렉션', name:'cname', for:'colloection_1'},
+      {label: '해축', name:'cname', for:'colloection_2'},
+    ]
   }
   static defaultProps = {
     title: '',
@@ -34,40 +39,72 @@ class Popup extends Component {
     for: '',
     inner: '',
     isBtn:'',
-    close: () => {},
   }
+
+  completeMsg = ()=>{
+    let msg = this.props.msg,
+        type = this.props.type;
+
+    if (type === 'report'){
+      msg = '신고되었습니다.'
+    }
+    if (type === 'collections'){
+      msg = '저장되었습니다.'
+    }
+    if (type === 'share'){
+      msg = '공유되었습니다.'
+    }
+    this.props.completeMsg(msg);
+    this.props.close();
+  }
+
+  closeDimm = (e)=>{
+    let dimm = e.target.className;
+    if (dimm === 'box') {
+      this.props.close()
+    }
+  }
+
+
   chkReport = (e)=>{
     this.setState({ checked: e.target.id })
   }
 
-  createCollection = (e)=>{
-    if (e.target.value){
-      this.setState({creatable: true})
-    } else {
-      this.setState({creatable: false})
-    }
+  addCollection = (c_data)=>{
+    const { collections } = this.state;
+    this.setState({
+      collections: collections.concat({ ...c_data })
+    })
   }
+  chkCollection = (e)=>{
+    let label = e.target.id;
+    console.log(label)
+  }
+  
 
   
   render() {
     const {
-      close,
-    } = this.props
+      userReport,
+      collections
+    } = this.state;
     
     return (
-      <div id="popup">
+      <div id="popup" onClick={this.closeDimm}>
         <div className="box">
           <div className="frame">
-            <button type="button" className="btnClose" onClick={() => close()}><i className="fas fa-times"></i><span className="blind">닫기</span></button>
+            <button type="button" className="btnClose" onClick={this.props.close}><i className="fas fa-times"></i><span className="blind">닫기</span></button>
             <div className="title">{this.props.title}</div>
             <div className={"entry " + (this.props.type)}>
+
+            
 
             {/* 카드-유저-신고 */}
             {this.props.type === 'report' && 
             <>
               <div className="popupList radio">
 
-                {this.state.userReport.map((report, i) => {
+                {userReport.map((report, i) => {
                   return (
                     <div className="item" key={i}>
                       <input type="radio" 
@@ -82,11 +119,11 @@ class Popup extends Component {
                       {i === 4 && this.state.checked === 'report_5' && 
                         <div className="popupList popupInner checkbox">
                           <p><strong>이 콘텐츠와 관련없는 관심사를 선택하세요.</strong></p>
-                          {this.state.userReport[4].inner.map((cont, i) => {
+                          {userReport[4].inner.map((cont, i) => {
                             return (<PopupInnerItem label={cont.label}
                                                 name={cont.name}
                                                 for={cont.for}
-                                                key={i}/>);
+                                                key={i} />);
                           })}
                         </div>
                       }
@@ -102,40 +139,6 @@ class Popup extends Component {
                   );
                 })}
               </div>
-
-              {/* 카드-유저-신고 
-              {this.state.userReport.map((report, i) => {
-                return (<PopupItem label={report.label}
-                                    name={report.name}
-                                    for={report.for}
-                                    key={report.id}/>);
-              })}
-              */}
-              
-              {/*
-              사유5 : 무관한 관심사
-              {this.state.checked === 'report_5' && 
-                  <div className="popupList popupInner checkbox">
-                    <p><strong>이 콘텐츠와 관련없는 관심사를 선택하세요.</strong></p>
-                    {this.state.userReport[4].inner.map((cont, i) => {
-                      return (<PopupInnerItem label={cont.label}
-                                          name={cont.name}
-                                          for={cont.for}
-                                          key={i}/>);
-                    })}
-                  </div>
-                }
-                 */}
-
-                {/* 
-                사유6 : 직접작성
-                {this.state.checked === 'report_6' && 
-                  <div className="popupList popupInner">
-                    <p><strong>신고하는 이유가 무엇인가요? (최대 50자)</strong></p>
-                    <textarea name="report_reason" id="report_reason" className="textarea" placeholder="이유를 입력해주세요"></textarea>
-                  </div>
-                }
-                 */}
             </>
             }
 
@@ -143,27 +146,36 @@ class Popup extends Component {
             {this.props.type === 'collections' && 
               <>
                 <div className="popupList checkbox">
-                  <div className="item"><input type="checkbox" name="r_collection" id="r_collection_1" /><label htmlFor="r_collection_1"><i>Y</i>Yasdf</label></div>
-                  <div className="item"><input type="checkbox" name="r_collection" id="r_collection_2" /><label htmlFor="r_collection_2"><i>Y</i>Yasdf</label></div>
-                  <div className="item"><input type="checkbox" name="r_collection" id="r_collection_3" /><label htmlFor="r_collection_3"><i>Y</i>Yasdf</label></div>
+                  {collections.map((collection, i) => {
+                    return (
+                      i < 3 &&
+                      <Collections label={collection.label}
+                                   name={collection.name}
+                                   for={collection.for+'_c'}
+                                   firstletter={collection.label.substring(0, 1)}
+                                   chk={this.chkCollection}
+                                   key={i} />
+                    );
+                  })}
                 </div>
 
                 <div className="create">
-                  <div className="item">
-                      <label htmlFor="c_collection"><i className="fas fa-plus"></i></label>
-                      <input type="text" id="c_collection" onChange={this.createCollection} placeholder="새 컬렉션 만들기" />
-                      {this.state.creatable &&
-                        <button type="button">만들기</button>
-                      }
-                  </div>
+                  <Create onCreate={this.addCollection}
+                          l_collection={collections.length}
+                   />
                 </div>
 
                 <div className="popupList checkbox">
-                  <div className="item"><input type="checkbox" name="collection" id="collection_1" /><label htmlFor="collection_1"><i>Y</i>Yasdf</label></div>
-                  <div className="item"><input type="checkbox" name="collection" id="collection_2" /><label htmlFor="collection_2"><i>Y</i>Yasdf</label></div>
-                  <div className="item"><input type="checkbox" name="collection" id="collection_3" /><label htmlFor="collection_3"><i>Y</i>Yasdf</label></div>
-                  <div className="item"><input type="checkbox" name="collection" id="collection_4" /><label htmlFor="collection_4"><i>Y</i>Yasdf</label></div>
-                  <div className="item"><input type="checkbox" name="collection" id="collection_5" /><label htmlFor="collection_5"><i>Y</i>Yasdf</label></div>
+                  {collections.map((collection, i) => {
+                    return (
+                      <Collections label={collection.label}
+                                   name={collection.name}
+                                   for={collection.for}
+                                   firstletter={collection.label.substring(0, 1)}
+                                   chk={this.chkCollection}
+                                   key={i} />
+                    );
+                  })}
                 </div>
               </>
             }
@@ -172,8 +184,8 @@ class Popup extends Component {
 
             {this.props.type !== 'share' && 
             <div className="btns">
-              <button type="button" className="btn" onClick={() => close()}>취소</button>
-              <button type="button" className="btn red">확인</button>
+              <button type="button" className="btn" onClick={this.props.close}>취소</button>
+              <button type="submit" className="btn red" onClick={this.completeMsg}>확인</button>
             </div>
             }
 
@@ -202,6 +214,72 @@ class PopupInnerItem extends Component {
         <input type="checkbox" name={this.props.name} id={this.props.for} />
         <label htmlFor={this.props.for}>{this.props.label}</label>
       </div>
+    );
+  }
+}
+
+class Collections extends Component {
+  render() {
+    return (
+      <div className="item">
+        <input type="checkbox" 
+              name={this.props.name} 
+              id={this.props.for}
+              onChange={this.props.chk}
+         />
+        <label htmlFor={this.props.for}><i>{this.props.firstletter}</i>{this.props.label}</label>
+      </div>
+    );
+  }
+}
+
+class Create extends Component {
+  state = {
+    creatable: false,
+  }
+  createCollection = (e)=>{
+    if (e.target.value){
+      this.setState({
+        creatable: true, 
+        label: e.target.value,
+        name: 'cname',
+        for: e.target.id
+      })
+    } else {
+      this.setState({creatable: false})
+    }
+  }
+  create = (e)=>{
+    e.preventDefault();
+    if (this.state.creatable){
+      this.props.onCreate(this.state);
+      this.setState({
+        creatable: false,
+        label: '',
+        name: 'cname',
+        for: '',
+      })
+    }
+  }
+
+  render() {
+    return (
+      <form onSubmit={this.create}>
+      <div className="item">
+        <label htmlFor="create_c"><i className="fas fa-plus"></i></label>
+        <input type="text" 
+              name={this.state.name} 
+              id={"collection_"+(this.props.l_collection+1)} 
+              onChange={this.createCollection}
+              onKeyUp={this.creatable}
+              value={this.state.label || ''}
+              placeholder="새 컬렉션 만들기"
+        />
+        {this.state.creatable &&
+          <button type="submit">만들기</button>
+        }
+      </div>
+      </form>
     );
   }
 }

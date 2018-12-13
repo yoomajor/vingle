@@ -8,7 +8,7 @@ import CardAddedPage from './CardAddedPage';
 import CardTag from './CardTag';
 import CardUtil from './CardUtil';
 import Toast from '../Ui/Toast';
-import Popup from '../Ui/Popup';
+import Popup from '../Ui/Popup/';
 import Confirm from '../Ui/Confirm';
 
 import './Card.scss';
@@ -25,7 +25,8 @@ class Card extends Component {
   }
 
   toastMsg = (tstmsg)=>{
-    let msg = tstmsg
+    let msg = tstmsg;
+
     this.setState({
       toast: true,
       msg: msg,
@@ -34,8 +35,9 @@ class Card extends Component {
   }
 
   openPopup = (act, tit)=>{
-    let type = act
-    let title = tit
+    let type = act,
+        title = tit;
+
     this.setState({
       popup: true,
       type: type,
@@ -47,43 +49,33 @@ class Card extends Component {
   }
 
   openConfirm = (act, tit, cont)=>{
-    let type = act
-    let title = tit
-    let html = cont
+    let type = act,
+        title = tit,
+        html = cont;
 
     this.setState({
       confirm: true,
       type: type,
       title: title,
-      html: html
+      html: html,
     });
   }
   closeConfirm = () =>{
     this.setState({confirm: false});
   }
 
-  
-  
 
   render() {
 
     return (
       <>
-        {/* 기능 테스트용 임시 버튼, 추후 개별 모듈화 예정 */}
-        <div className="testBox">
-          <p>[기능 테스트]</p>
-          <button className="btn" onClick={this.toastMsg}>토스트메시지</button>
-          <button className="btn" onClick={this.openConfirm}>컨펌메시지</button>
-          <button className="btn" onClick={this.openPopup}>팝업</button>
-        </div>
-
 
         {/* 카드 */}
         <div className="card">
           <CardUser
-            followToast={this.toastMsg}
-            userConfirm={this.openConfirm}
-            userPopup={this.openPopup}
+            confirm={this.openConfirm}
+            popup={this.openPopup}
+            completeMsg={this.toastMsg}
           />
 
           <CardTitle />
@@ -97,9 +89,9 @@ class Card extends Component {
           <CardTag />
 
           <CardUtil
-            utilConfirm={this.openConfirm}
-            utilPopup={this.openPopup}
-            utilToast={this.toastMsg}
+            confirm={this.openConfirm}
+            popup={this.openPopup}
+            completeMsg={this.toastMsg}
           />
         </div>
 
@@ -115,7 +107,9 @@ class Card extends Component {
             title={this.state.title}
             html={this.state.html}
             type={this.state.type}
+            msg={this.state.msg}
             close={this.closeConfirm}
+            completeMsg={this.toastMsg}
            /> 
         }
         
@@ -124,6 +118,7 @@ class Card extends Component {
             title={this.state.title}
             type={this.state.type}
             close={this.closePopup}
+            completeMsg={this.toastMsg}
           /> 
         }
 

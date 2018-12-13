@@ -55,7 +55,10 @@ class CardUser extends Component {
               {/* 글로벌 기능 :: 드롭다운 */}
               {this.state.dropdown && 
                 <>
-                  <Dropdown userConfirm={this.props.userConfirm} userPopup={this.props.userPopup} />
+                  <Dropdown confirm={this.props.confirm} 
+                            popup={this.props.popup}
+                            completeMsg={this.props.completeMsg}
+                   />
                   <Dimm close={this.closeDropdown} />
                 </>
               }
@@ -88,6 +91,7 @@ class Dropdown extends Component {
     id: '',
     extra:'',
     evt:'',
+    ok:'',
   }
   
   render() {
@@ -103,8 +107,10 @@ class Dropdown extends Component {
                                     act={user.id}
                                     tit={user.tit}
                                     cont={user.cont}
-                                    userConfirm={this.props.userConfirm}
-                                    userPopup={this.props.userPopup}
+                                    msg={user.msg}
+                                    confirm={this.props.confirm}
+                                    popup={this.props.popup}
+                                    completeMsg={this.props.completeMsg}
                                     key={i}/>);
           })}
         </>
@@ -114,18 +120,24 @@ class Dropdown extends Component {
 }
 
 class DropdownItem extends Component {
-
+  state = {
+    msg: '',
+  }
   utilEvt = () =>{
-    let evt = this.props.evt
-    let act = this.props.act
-    let tit = this.props.tit
-    let cont = this.props.cont
+    let evt = this.props.evt,
+        act = this.props.act,
+        tit = this.props.tit,
+        cont = this.props.cont,
+        tstmsg = this.props.msg;
 
     if (evt === 'confirm') {
-      this.props.userConfirm(act, tit, cont)
+      this.props.confirm(act, tit, cont);
     }
     if (evt === 'popup') {
-      this.props.userPopup(act, tit)
+      this.props.popup(act, tit);
+    }
+    if (evt === 'toast') {
+      this.props.completeMsg(tstmsg);
     }
   }
 
