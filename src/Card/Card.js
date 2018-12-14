@@ -21,7 +21,6 @@ class Card extends Component {
     toast: false,
     popup: false,
     confirm: false,
-    dropdown: false,
     detail:false,
     write:false,
     type: '',

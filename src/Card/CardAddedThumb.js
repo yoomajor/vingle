@@ -11,8 +11,9 @@ class CardAddedThumb extends Component {
         <Thumb type={added.type}
                 ratio={added.ratio}
                 more={added.more}
-                view={added.view}
+                insight={added.insight}
                 sight={added.sight}
+                view={this.props.view}
          />
         {console.log(this.props.added)}
       </>
@@ -21,17 +22,14 @@ class CardAddedThumb extends Component {
 }
 
 class Thumb extends Component {
-  state = {
-
-  }
   render() {
     const { sight } = this.props;
 
     return (
       <>
-         <div className={"added thumb thumbratio_"+ this.props.ratio +" thumbtype_"+this.props.view}>
-            <div className="box clear">
-              {this.props.ratio === 'q' && this.props.view >= 4
+         <div className={"added thumb thumbratio_"+ this.props.ratio +" thumbtype_"+this.props.insight}>
+            <div className="box" onClick={this.props.view}>
+              {this.props.ratio === 'q' && this.props.insight >= 4
                 ? <>
                   <div className="wrap">
                     {sight.map((s, i) => {
