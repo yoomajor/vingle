@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import CardUser from './CardUser';
 import CardContents from './CardContents';
-import CardAddedThumb from './CardAddedThumb';
-import CardAddedEmbed from './CardAddedEmbed';
-import CardAddedPage from './CardAddedPage';
+import CardAdded from './CardAdded';
 import CardTag from './CardTag';
 import CardUtil from './CardUtil';
 import Toast from '../Ui/Toast';
@@ -107,10 +105,9 @@ class Card extends Component {
             view={this.openDetail}
           />
 
-          {/* 카드 :: 첨부 - 최상위 첨부파일 포맷에 따라 썸네일, 임베드, 페이지링크 형태로 보여지는 화면이 나뉜다 */}
-          <CardAddedThumb />
-          <CardAddedEmbed />
-          <CardAddedPage />
+          <CardAdded
+            view={this.openDetail}
+          />
 
           <CardTag />
 

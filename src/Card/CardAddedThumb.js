@@ -3,9 +3,91 @@ import React, { Component } from 'react';
 class CardAddedThumb extends Component {
 
   render() {
+    const {
+      added,
+    } = this.props;
     return (
       <>
-        {/* 카드 :: 첨부 - 이미지/동영상 : 썸네일형태 */}
+        <Thumb type={added.type}
+                ratio={added.ratio}
+                more={added.more}
+                view={added.view}
+                sight={added.sight}
+         />
+        {console.log(this.props.added)}
+      </>
+    );
+  }
+}
+
+class Thumb extends Component {
+  state = {
+
+  }
+  render() {
+    const { sight } = this.props;
+
+    return (
+      <>
+         <div className={"added thumb thumbratio_"+ this.props.ratio +" thumbtype_"+this.props.view}>
+            <div className="box clear">
+              {this.props.ratio === 'q' && this.props.view >= 4
+                ? <>
+                  <div className="wrap">
+                    {sight.map((s, i) => {
+                      if (i <= 1){
+                        return (<div className={"inner format_"+s.format} key={i}><img src={s.src} alt="" /></div>);
+                      }
+                    })}
+                  </div>
+                  <div className="wrap">
+                    {sight.map((s, i) => {
+                      if (i > 1){
+                        if (i === sight.length-1 && this.props.more) {
+                          return (
+                            <React.Fragment key={i}>
+                            <div className={"inner format_"+s.format} key={i}><img src={s.src} alt="" /></div>
+                            <span className="more">+{this.props.more}</span>
+                            </React.Fragment>
+                          );
+                        } else {
+                          return (<div className={"inner format_"+s.format} key={i}><img src={s.src} alt="" /></div>);
+                        }
+                      }
+                    })}
+                  </div>
+                  </>
+                : <>
+                  <div className="wrap">
+                    {sight.map((s, i) => {
+                      if (i === 0){
+                        return (<div className={"inner format_"+s.format} key={i}><img src={s.src} alt="" /></div>);
+                      }
+                    })}
+                  </div>
+                  <div className="wrap">
+                    {sight.map((s, i) => {
+                      if (i !== 0){
+                        if (i === sight.length-1 && this.props.more) {
+                          return (
+                            <React.Fragment key={i}>
+                            <div className={"inner format_"+s.format}><img src={s.src} alt="" /></div>
+                            <span className="more">+{this.props.more}</span>
+                            </React.Fragment>
+                          );
+                        } else {
+                          return (<div className={"inner format_"+s.format} key={i}><img src={s.src} alt="" /></div>);
+                        }
+                      }
+                    })}
+                  </div>
+                  </>
+              }
+            </div>
+          </div>
+
+
+        {/* 카드 :: 첨부 - 이미지/동영상 : 썸네일형태
         <div className="added thumb thumbratio_w thumbtype_5">
             <div className="box clear">
               <div className="wrap">
@@ -20,6 +102,7 @@ class CardAddedThumb extends Component {
               </div>
             </div>
           </div>
+           */}
       </>
     );
   }

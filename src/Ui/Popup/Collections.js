@@ -23,24 +23,36 @@ class Collections extends Component {
   }
 
   chkCollection = (e)=>{
+    let isChecked = e.target.checked,
+        val = e.target.value,
+        chk = document.querySelector('input[value="'+ val +'"]');
     const { chk_collections } = this.state;
-    this.setState({
-      chk_collections: chk_collections.concat({id: e.target.id})
-    })
+    if (isChecked) {
+      this.setState({
+        chk_collections: chk_collections.concat(val)
+      })
+      chk.checked = true;
+    } else {
+      this.setState({
+        chk_collections: chk_collections.filter(item => item !== val)
+      })
+      chk.checked = false;
+    }
   }
 
   submit = (e)=>{
     e.preventDefault();
+    const { chk_collections } = this.state;
     if (e.keyCode !== 13) {
       let msg = '';
-      if (this.state.chk_collections.length !== 0){
+      if (chk_collections.length !== 0){
         msg = '선택한 컬렉션에 저장되었습니다.';
         this.props.close();
-        console.log(this.state.chk_collections);
       } else {
         msg = '컬렉션을 선택하세요.';
       }
       this.props.completeMsg(msg);
+      console.log(chk_collections);
     }
   }
 
@@ -65,8 +77,10 @@ class Collections extends Component {
               i < 3 &&
               <CollectionList label={collection.label}
                               name={collection.name}
-                              for={collection.for+'_c'}
+                              for={collection.for}
+                              id={collection.for+'_c'}
                               firstletter={collection.label.substring(0, 1)}
+                              value={collection.for.substring(-2)}
                               chk={this.chkCollection}
                               key={i} />
             );
@@ -85,7 +99,9 @@ class Collections extends Component {
               <CollectionList label={collection.label}
                               name={collection.name}
                               for={collection.for}
+                              id={collection.for}
                               firstletter={collection.label.substring(0, 1)}
+                              value={collection.for}
                               chk={this.chkCollection}
                               key={i} />
             );
@@ -111,7 +127,9 @@ class CollectionList extends Component {
       <div className="item">
         <input type="checkbox" 
               name={this.props.name} 
-              id={this.props.for}
+              id={this.props.id}
+              for={this.props.for}
+              value={this.props.value}
               onChange={this.props.chk}
          />
         <label htmlFor={this.props.for}><i>{this.props.firstletter}</i><span>{this.props.label}</span></label>
