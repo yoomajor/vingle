@@ -5,21 +5,20 @@ class CardUser extends Component {
   state = {
     isFollow: false,
     dropdown: false,
-    cardInfo: {
-      name: '문명6:흥망성쇠',
-      id: 'civilization6',
-      thumb:'https://media.vingle.net/images/us_l/w5w8vzbw6j.jpg',
-      time: '25분 전',
-    },
+    time: '2018-12-12',
+  }
 
+
+  componentDidMount (){
+    this.setState({
+      time: this.props.time.substring(0, 10)
+    })
   }
   
   followUser = () =>{
-    const { cardInfo } = this.state;
     this.setState({
       isFollow: !this.state.isFollow,
     });
-    console.log(cardInfo.id);
   }
 
   openDropdown = () =>{
@@ -37,17 +36,19 @@ class CardUser extends Component {
 
   render() {
     const {
-      cardInfo
+      time,
     } = this.state;
+    
 
     return (
       <>
+
         {/* 카드 :: 유저인포 */}
         <div className="user">
-          <div className="img"><a href="#"><img src={cardInfo.thumb} alt="" /></a></div>
+          <div className="img"><a href="#"><img src="https://media.vingle.net/images/us_l/w5w8vzbw6j.jpg" alt="" /></a></div>
           <div className="info">
-            <div className="name"><a href="#">{cardInfo.name}</a></div>
-            <div className="time">{cardInfo.time}</div>
+            <div className="name"><a href="#">작성자명 데이터 필요해요</a></div>
+            <div className="time">{time}</div>
           </div>
           <div className="follow">
             <button type="button" 

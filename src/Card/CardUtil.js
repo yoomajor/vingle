@@ -1,5 +1,12 @@
 import React, { Component } from 'react';
 import Dimm from '../Ui/Dimm';
+import axios from 'axios';
+
+function like(id, cnt) {
+  axios.put(`http://dev-jolse.iptime.org:9000/feed/${id}`, id, cnt).then((response) => {
+    console.log(id, cnt)
+  });
+}
 
 class CardUser extends Component {
   state = {
@@ -7,6 +14,13 @@ class CardUser extends Component {
     isLike: false,
     dropdown: false,
   }
+
+  componentDidMount (){
+    this.setState({
+      cnt: this.props.liked
+    })
+  }
+
   openDropdown = () =>{
     this.setState({
       dropdown: true
@@ -19,7 +33,8 @@ class CardUser extends Component {
   }
 
   likeThis = () =>{
-    let likeCnt = this.state.cnt;
+    let likeCnt = this.state.cnt,
+        id = this.props.id;
 
     if (this.state.isLike) {
       likeCnt--;
@@ -29,8 +44,14 @@ class CardUser extends Component {
     this.setState({
       isLike: !this.state.isLike,
       cnt: likeCnt
-    })
+    });
+
+    like(id, likeCnt);
+    
   }
+
+
+  
 
   render() {
 
@@ -53,7 +74,7 @@ class CardUser extends Component {
           </div>
           
           {/* 댓글 */}
-          <div className="reply"><button type="button"><i className="far fa-comments"></i>댓글</button></div>
+          <div className="reply"><button type="button" onClick={this.props.view}><i className="far fa-comments"></i>댓글</button></div>
 
           {/* 보내기 - 컬렉션 저장, 새카드에 공유하며 작성, SNS공유 */}
           <div className="share">
