@@ -38,6 +38,10 @@ class CardUser extends Component {
     const {
       time,
     } = this.state;
+
+    const {
+      onToast
+    } = this.props;
     
 
     return (
@@ -62,7 +66,7 @@ class CardUser extends Component {
           </div>
           <div className="more">
             <div className="dropdownGroup">
-              <button type="button" onClick={this.openDropdown}><i className="fas fa-ellipsis-h"></i><span className="blind">더보기</span></button>
+              <button type="button" onClick={onToast}><i className="fas fa-ellipsis-h"></i><span className="blind">더보기</span></button>
               {/* 글로벌 기능 :: 드롭다운 */}
               {this.state.dropdown && 
                 <>

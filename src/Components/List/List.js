@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
+
 import Card from '../Card/Card';
 import Toast from '../Ui/Toast';
 import Popup from '../Ui/Popup/';
 import Confirm from '../Ui/Confirm';
 import Detail from '../Detail/Detail';
 import Write from '../Write/Write';
+
+import { connect } from 'react-redux';
+import * as cardActions from '../../store/modules/card';
 
 import '../Card/Card.scss';
 
@@ -81,12 +85,20 @@ class List extends Component {
   }
 
 
+  handleToast = () =>{
+    this.props.toast()
+  }
+  
+
   render() {
+
+    const { handleToast } = this;
 
     const { feed } = this.props;
 
     return (
       <>
+        {/*<button class="btn" onClick={}></button>*/}
         
         {/* 카드 */}
 
@@ -99,6 +111,7 @@ class List extends Component {
               view={this.openDetail}
               card={feed[i]}
               key={i}
+              onToast={handleToast}
             />
           );
         })}
@@ -147,5 +160,8 @@ class List extends Component {
     );
   }
 }
+const mapDispatchToProps = (dispatch) => ({
+  toast: () => dispatch(cardActions.toastmsg())
+})
 
-export default List;
+export default connect(mapDispatchToProps)(List);

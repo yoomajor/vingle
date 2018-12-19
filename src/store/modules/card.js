@@ -25,6 +25,6 @@ export default function card (state = initialState, action) {
 */
 export default handleActions ({
   [TOAST]: (state, action) => {
-    return { tstmsg: state.tstmsg }
+    console.log(state, action)
   },
 }, initialState);
