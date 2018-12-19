@@ -128,7 +128,6 @@ class CollectionList extends Component {
         <input type="checkbox" 
               name={this.props.name} 
               id={this.props.id}
-              for={this.props.for}
               value={this.props.value}
               onChange={this.props.chk}
          />

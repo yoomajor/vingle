@@ -26,3 +26,4 @@ body {position:relative;direction:ltr;line-height:1.3;font-size:14px;font-family
 .blind {position:absolute;top:-9999px;left:-9999px;width:1px;height:1px;margin:-1px;overflow:hidden;text-align:left;text-indent:-9999em}
 .accNav:focus {display:block;top:0;left:50%;width:100px;height:auto;margin:0 0 0 -50px;padding:3px 0;text-align:center;font-size:11px;text-indent:0;color:#fff;background-color:#333;z-index:999}
 .clear:after {content:"";display:block;clear:both;}
+#content {padding-top:100px;}

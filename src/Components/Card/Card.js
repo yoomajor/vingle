@@ -1,16 +1,21 @@
 import React, { Component } from 'react';
-import Card from '../Card/Card';
+import CardUser from './CardUser';
+import CardContents from './CardContents';
+import CardAdded from './CardAdded';
+import CardTag from './CardTag';
+import CardUtil from './CardUtil';
 import Toast from '../Ui/Toast';
 import Popup from '../Ui/Popup/';
 import Confirm from '../Ui/Confirm';
+
 import Detail from '../Detail/Detail';
 import Write from '../Write/Write';
 
-import '../Card/Card.scss';
+import './Card.scss';
 import '../Ui/Ui.scss';
 
-class List extends Component {
 
+class Card extends Component {
   state = {
     toast: false,
     popup: false,
@@ -82,26 +87,44 @@ class List extends Component {
 
   render() {
 
-    const { feed } = this.props;
+    const {card} = this.props;
 
     return (
       <>
-        
-        {/* 카드 */}
 
-        {feed.map((f, i) => {
-          return (
-            <Card confirm={this.openConfirm}
-              popup={this.openPopup}
-              completeMsg={this.toastMsg}
-              write={this.openWrite}
-              view={this.openDetail}
-              card={feed[i]}
-              key={i}
-            />
-          );
-        })}
-        
+        {/* 카드 */}
+        <div className="card">
+          <CardUser
+            confirm={this.openConfirm}
+            popup={this.openPopup}
+            completeMsg={this.toastMsg}
+            write={this.openWrite}
+            time={card.build_date}
+          />
+          
+          <CardContents
+            view={this.openDetail}
+            title={card.title}
+            contents={card.content}
+          />
+
+          <CardAdded
+            view={this.openDetail}
+          />
+
+          <CardTag />
+
+          <CardUtil
+            confirm={this.openConfirm}
+            popup={this.openPopup}
+            completeMsg={this.toastMsg}
+            view={this.openDetail}
+            write={this.openWrite}
+            id={card.feed_id}
+            liked={card.good}
+          />
+        </div>
+
       
         {this.state.toast && 
           <Toast 
@@ -147,4 +170,4 @@ class List extends Component {
   }
 }
 
-export default List;
+export default Card;

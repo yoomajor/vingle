@@ -58,7 +58,7 @@ class CardAdded extends Component {
     //첨부타입 세팅 (thumb, embed, page)
     if (src.match(type_thumb) || src.match(type_video)) { //이미지 || 동영상
       type = 'thumb'
-    } else if (src.indexOf(type_embed) != -1) { //embed.. embed 정규식 찾아봐야함
+    } else if (src.indexOf(type_embed) !== -1) { //embed.. embed 정규식 찾아봐야함
       type = 'embed'
     } else { //나머지
       type = 'page'
